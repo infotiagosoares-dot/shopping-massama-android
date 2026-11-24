@@ -62,34 +62,7 @@ public class MainActivity extends Activity {
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
         layout.setBackgroundColor(Color.WHITE);
-        setContentView(layout);
-
-        LinearLayout bar = new LinearLayout(this);
-        bar.setPadding(dp(14),dp(6),dp(10),dp(6));
-        bar.setGravity(Gravity.CENTER_VERTICAL);
-        bar.setBackgroundColor(Color.WHITE);
-        layout.addView(bar, new LinearLayout.LayoutParams(-1,dp(66)));
-
-        ImageView logo = new ImageView(this);
-        logo.setImageResource(R.drawable.logo_horizontal);
-        logo.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        bar.addView(logo,new LinearLayout.LayoutParams(dp(190),dp(52)));
-
-        View empty = new View(this);
-        bar.addView(empty,new LinearLayout.LayoutParams(0,1,1));
-
-        TextView reload = new TextView(this);
-        reload.setText("⟳");
-        reload.setTextSize(28);
-        reload.setTextColor(TEAL);
-        reload.setGravity(Gravity.CENTER);
-        reload.setContentDescription("Atualizar página");
-        reload.setOnClickListener(v->webView.reload());
-        bar.addView(reload,new LinearLayout.LayoutParams(dp(46),dp(46)));
-
-        View separator = new View(this);
-        separator.setBackgroundColor(0xFFE0EEEE);
-        layout.addView(separator,new LinearLayout.LayoutParams(-1,dp(1)));
+        setContentView(layout)
 
         progressBar = new ProgressBar(this,null,android.R.attr.progressBarStyleHorizontal);
         progressBar.setMax(100);
