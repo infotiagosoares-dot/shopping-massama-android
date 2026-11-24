@@ -62,7 +62,7 @@ public class MainActivity extends Activity {
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
         layout.setBackgroundColor(Color.WHITE);
-        setContentView(layout)
+        setContentView(layout);
 
         progressBar = new ProgressBar(this,null,android.R.attr.progressBarStyleHorizontal);
         progressBar.setMax(100);
