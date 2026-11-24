@@ -1,0 +1,49 @@
+SHOPPING CENTER MASSAMÁ — APP ANDROID (APK)
+========================================
+
+ESTADO: Projeto-fonte Android preparado. NÃO é um APK compilado.
+Para obter o ficheiro APK, é necessário compilar com Android Studio
+ou usando o GitHub Actions incluído neste projeto.
+
+O QUE A APP FAZ
+- Ecrã inicial com o logótipo oficial do shopping.
+- Abre o site público https://shoppingcentermassama.pt/.
+- Navegação: Início, Lojas, Novidades e Contactos.
+- Acesso a arrendamentos pelas ligações do site.
+- Abre links externos (Facebook, Instagram, mapas, WhatsApp) no navegador/apps.
+- Atualiza automaticamente o conteúdo quando o site muda (precisa internet).
+- É diferente da PWA: o ficheiro APK precisa de ser compilado.
+- Não incorpora o painel privado /admin e não lê a base de dados diretamente.
+
+OBTER APK SEM INSTALAR ANDROID STUDIO (GITHUB ACTIONS)
+1. Em https://github.com/ cria uma conta, se necessário.
+2. Cria um novo repositório (público ou privado, conforme preferires).
+3. Descompacta este ZIP no computador.
+4. Carrega TODOS os ficheiros e pastas para a raiz do repositório,
+   incluindo a pasta .github/workflows (pasta oculta).
+5. No GitHub, abre Actions > Gerar APK Android > Run workflow.
+6. Quando a compilação terminar com sucesso, abre o run e descarrega
+   o artifact Shopping-Massama-Android-APK.
+7. Descompacta o artifact: inclui o ficheiro app-debug.apk.
+8. Envia o APK para o teu Android e abre-o para instalar.
+   O Android poderá pedir autorização para instalar de fontes desconhecidas.
+
+ALTERNATIVA COM ANDROID STUDIO
+1. Instala Android Studio (https://developer.android.com/studio).
+2. Abre a pasta do projeto: Open, seleciona shopping-massama-apk-android.
+3. Espera pela sincronização e instalação das dependências.
+4. Menu Build > Build App Bundle(s) / APK(s) > Build APK(s).
+5. O ficheiro estará em app/build/outputs/apk/debug/app-debug.apk.
+
+ANTES DE DISTRIBUIR
+- Testar no Android: navegação, imagens, e ligações externas.
+- A versão debug é instalável para testes, mas para distribuição estável
+  convém gerar uma versão release assinada com a tua chave, guardada com segurança.
+- Para atualizar posteriormente a mesma aplicação, utiliza o mesmo applicationId
+  e a mesma chave de assinatura.
+- Esta app depende da disponibilidade do domínio oficial.
+
+Se o domínio oficial estiver a mostrar conteúdo diferente do painel de gestão,
+a app seguirá o domínio oficial, pois funciona como a versão pública do site.
+
+NOTA: Não foram adicionadas chaves API nem palavras-passe neste projeto.
