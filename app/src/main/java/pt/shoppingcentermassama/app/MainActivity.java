@@ -106,9 +106,9 @@ public class MainActivity extends Activity {
 
         LinearLayout navigation = new LinearLayout(this);
         navigation.setOrientation(LinearLayout.HORIZONTAL);
-        navigation.setPadding(dp(3),dp(2),dp(3),dp(4));
+        navigation.setPadding(dp(3),dp(2),dp(3),dp(28));
         navigation.setBackgroundColor(Color.WHITE);
-        layout.addView(navigation,new LinearLayout.LayoutParams(-1,dp(62)));
+        layout.addView(navigation,new LinearLayout.LayoutParams(-1,dp(90)));
         String[] titles = {"Início", "Lojas", "Novidades", "Contactos"};
         navLabels = new TextView[titles.length];
         for(int i=0;i<titles.length;i++) {
