@@ -10,6 +10,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Build;
+import android.graphics.Insets;
+import android.view.WindowInsets;
 import android.os.Environment;
 import android.view.Gravity;
 import android.view.View;
@@ -55,14 +58,30 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle state) {
         super.onCreate(state);
-        getWindow().setStatusBarColor(DARK);
+        // Respeitar as barras do sistema, incluindo Android 15 (edge-to-edge).
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            getWindow().setDecorFitsSystemWindows(false);
+        }
+        getWindow().setStatusBarColor(Color.WHITE);
         getWindow().setNavigationBarColor(Color.WHITE);
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
 
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
         layout.setBackgroundColor(Color.WHITE);
         setContentView(layout);
+        // Evita que o cabeçalho fique atrás do relógio, rede e bateria,
+        // e que os separadores inferiores tapem os botões do Samsung.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            layout.setOnApplyWindowInsetsListener((view, insets) -> {
+                Insets bars = insets.getInsets(
+                        WindowInsets.Type.statusBars() | WindowInsets.Type.navigationBars());
+                view.setPadding(0, bars.top, 0, bars.bottom);
+                return insets;
+            });
+            layout.requestApplyInsets();
+        }
 
         progressBar = new ProgressBar(this,null,android.R.attr.progressBarStyleHorizontal);
         progressBar.setMax(100);
@@ -79,9 +98,9 @@ public class MainActivity extends Activity {
 
         LinearLayout navigation = new LinearLayout(this);
         navigation.setOrientation(LinearLayout.HORIZONTAL);
-        navigation.setPadding(dp(3),dp(2),dp(3),dp(28));
+        navigation.setPadding(dp(3),dp(2),dp(3),dp(3));
         navigation.setBackgroundColor(Color.WHITE);
-        layout.addView(navigation,new LinearLayout.LayoutParams(-1,dp(90)));
+        layout.addView(navigation,new LinearLayout.LayoutParams(-1,dp(64)));
         String[] titles = {"Início", "Lojas", "Novidades", "Contactos"};
         navLabels = new TextView[titles.length];
         for(int i=0;i<titles.length;i++) {
@@ -267,3 +286,4 @@ public class MainActivity extends Activity {
         super.onDestroy();
     }
 }
+                                                                                         
